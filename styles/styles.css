@@ -1,0 +1,44 @@
+body{
+	background-color: black;
+	font-style: Arial;
+}
+
+p.titulo{
+	font-size: 14pts;
+	font-weight: bold;
+	justify-content: justify;
+	color: #585858;
+}
+
+p.texto{
+	font-size: 12pts;
+	justify-content: justify;
+	color: #585858;
+}
+
+td.rotulos{
+	font-size: 20pts;
+	font-weight: bold;
+	color: #585858;
+}
+
+td.datos{
+	font-size: 12pts;
+	color: #585858;
+}
+
+a:link, a:visited{
+	font-size: 12pts;
+	font-weight: bold;
+	color: #848484;
+	background-color: black;
+	text-decoration: none;
+}
+
+a:hover{
+	font-size: 12pts;
+	font-weight: bold;
+	color: black;
+	background-color: #585858;
+	text-decoration: none;
+}
