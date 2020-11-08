@@ -1,0 +1,173 @@
+<html>
+  <body>
+  <link type=text/css rel=stylesheet >
+    <form name=credito>
+	<table>
+	  <tr><td class=datos> class=rotulos>Vehiculo:<td>
+	    <select name=veh>
+		  <option value=1>XF 2.0 i4 Turbo</option>
+		  <option value=2>XF 3.0L V6 Premium Luxury</option>
+		  <option value=3>XF 3.0L V6 Portfolio</option>
+		  <option value=4>XFR 5.0L V8</option>
+		  <option value=5>XJ 3.0 L V6 Premium Luxury SWB</option>
+		  <option value=6>XJ 5.0 L V8 Portfolio SWB</option>
+		  <option value=7>XJ XJ 5.0 L V8 Supersport LWB</option>
+		  <option value=8>XKR Coupe</option>
+		  <option value=9>XKR Convertible</option>
+		</select></tr>
+	  <tr><td class=datos> class=rotulos>Enganche:<td>
+	    <select name=eng>
+		  <option value=1>10%</option>
+		  <option value=2>20%</option>
+		  <option value=3>30%</option>
+		  <option value=4>40%</option>
+		  <option value=5>50%</option>
+		 </select></tr>
+	  <tr><td class=datos> class=rotulos>Plazo:<td>
+	    <select name=pla>
+		  <option value=1>12 meses</option>
+		  <option value=2>24 meses</option>
+		  <option value=3>36 meses</option>
+		  <option value=4>48 meses</option>
+		  <option value=5>60 meses</option>
+		 </select></tr>
+      <tr><td colspan=2 align=right><input type=submit value="Obtener mensualidad" onclick=salida()></tr>		 
+	</table>
+	</form>
+	
+	
+	<script>
+	  function salida()
+	  {
+	    veh=document.credito.veh.selectedIndex;
+		eng=document.credito.eng.selectedIndex;
+		pla=document.credito.pla.selectedIndex;
+	  
+		veh1=document.credito.veh.options[veh].text;
+		eng1=document.credito.eng.options[eng].text;
+		pla1=document.credito.pla.options[pla].text;
+		
+		tint=7;
+		
+		var f1=new Date();
+		d1=f1.getDate();
+		m1=f1.getMonth()+1;
+		a1=f1.getFullYear();
+		
+		
+		  if(veh==0 || veh==1 || veh==2 || veh==3)
+		  {
+		    vfac=500000;
+		  }
+		  if(veh==4 || veh==5 || veh==6)
+		  {
+		    vfac=800000;
+		  }
+		  if(veh==7 || veh==8)
+		  {
+		    vfac=100000;
+		  }
+		
+		  if(pla==0)
+		  {
+		    plaz=12;
+			a3=1;
+		  }
+		  if(pla==1)
+		  {
+		    plaz=24;
+			a3=2;
+		  }
+		  if(pla==2)
+		  {
+		    plaz=36;
+			a3=3;
+		  }
+		  if(pla==3)
+		  {
+		    plaz=48;
+			a3=4;
+		  }
+		  if(pla==4)
+		  {
+		    plaz=60;
+			a3=5;
+		  }
+		 
+		  if(eng==0)
+		  {
+		    peng=10;
+		  }
+		  if(eng==1)
+		  {
+		    peng=20;
+		  }
+		  if(eng==2)
+		  {
+		    peng=30;
+		  }
+		  if(eng==3)
+		  {
+		    peng=40;
+		  }
+		  if(eng==4)
+		  {
+		    peng=50;
+		  }
+		
+		
+		
+		
+		  
+		  
+		meng=vfac*(peng/100);
+		mfin=vfac-meng;
+		mens=parseInt(((mfin*(plaz/12)*(tint/100)))+parseInt(mfin))/plaz;
+		inter=mfin*tint/100;
+		
+		document.write("<link type=text/css rel=stylesheet href=Css.css>");
+		document.write("<table border=0 align=center width=80%>");
+		document.write("<tr><td class=datos>Vehiculo:<td class=datos>"+veh1+"<td class=datos>Precio (pesos):<td class=datos>$ "+vfac+"</tr>");
+		document.write("<tr><td class=datos>Enganche"+eng1+":<td class=datos>$ "+meng+"<td class=datos>Financiamiento:<td class=datos>$ "+mfin+"</tr>");
+		document.write("<tr><td class=datos>Plazo:<td class=datos>"+pla1+"<td class=datos>Intereses 7%:<td class=datos>$ "+inter+" anual</tr>");
+		document.write("<tr><td class=datos>Mensualidad:<td class=datos>$ "+mens+"<td class=datos>Fecha contrato:<td class=datos>"+d1+"/"+m1+"/"+a1+"</tr>");
+		document.write("</table>");
+		
+		
+		var f=new Date();
+		d=f.getDate();
+		m=f.getMonth()+1;
+		a=f.getFullYear();
+		sal=mfin;
+		inter2=(sal*tint/100*plaz/12)/plaz;
+		cap=mens-inter2;
+		document.write("<br><br>");
+		document.write("<table border=1 align=center width=80%>");
+		document.write("<tr><td class=rotulos align=center>No.Pg<td class=rotulos align=center>Fecha pago<td class=rotulos align=center>Saldo<td class=rotulos align=center>Capital<td class=rotulos align=center>Intereses<td class=rotulos align=center>Mensualidad</tr>");
+		  for(m++,i=1;i<=plaz;i++,m++)
+		  {
+			if(m>12)
+			{
+			  a++;
+			  m=1;
+			}
+		   document.write("<tr><td class=datos width=25>"+i+"<td class=datos>");
+			if(d<10)
+			{
+			  document.write("0");
+			}
+		   document.write(+d+"/");
+			if(m<10)	   
+			{
+			  document.write("0");
+			}
+		   document.write(m+"/"+a+"<td class=datos>$ "+sal+"<td class=datos>$ "+cap+"<td class=datos>$ "+inter2+"<td class=datos>$ "+mens+"</tr>");
+		   sal=sal-cap;
+		   inter2=Math.floor((sal*tint/100*plaz/12)/plaz);
+		   cap=mens-inter2;
+		  }
+		document.write("</table>");
+	  }
+	</script>
+  </body>
+</html>
